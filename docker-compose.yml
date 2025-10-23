@@ -1,0 +1,53 @@
+services:
+  db:
+    image: postgres:16
+    container_name: obd_dataview_db
+    restart: always
+    environment:
+      POSTGRES_USER: obduser
+      POSTGRES_PASSWORD: obdpass
+      POSTGRES_DB: obd_dataview
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./db_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U obduser -d obd_dataview"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: obd_dataview_pgadmin
+    restart: always
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: admin
+    ports:
+      - "8080:80"
+    volumes:
+      - ./pgadmin_data:/var/lib/pgadmin
+    depends_on:
+      db:
+        condition: service_healthy
+
+  api:
+    build: .
+    depends_on:
+      db:
+        condition: service_healthy 
+    ports:
+      - "8000:8000"
+    environment:
+      DATABASE_HOST: db
+      DATABASE_PORT: 5432
+      DATABASE_USER: obduser
+      DATABASE_PASSWORD: obdpass
+      DATABASE_NAME: obd_dataview
+    volumes:
+      - .:/app
+    restart: always
+
+volumes:
+  pg_data:
