@@ -25,12 +25,51 @@ app.add_middleware(
 def list_vehicles(database: Session = Depends(db.get_db)):
     return crud.get_vehicles(database)
 
+from typing import Optional
+from datetime import date
+
 @app.get("/metrics/{vehicle}", response_model=list[schemas.EngineMetricsOut])
-def read_metrics(vehicle: str, database: Session = Depends(db.get_db)):
-    result = crud.get_metrics_by_vehicle(database, vehicle)
+def read_metrics(
+    vehicle: str,
+    mode: str = "Day",
+    date: Optional[date] = None,
+    database: Session = Depends(db.get_db)
+):
+    if mode not in ["Day", "Month", "Year"]:
+        raise HTTPException(status_code=400, detail="Invalid mode. Must be Day, Month, or Year")
+    
+    result = crud.get_metrics_by_vehicle(
+        database,
+        vehicle,
+        mode=mode,
+        date=date.isoformat() if date else None
+    )
+    
     if not result:
         raise HTTPException(status_code=404, detail="No data found")
     return result
+
+
+@app.get("/metrics/{vehicle}/aggregates")
+def read_metrics_aggregates(
+    vehicle: str,
+    mode: str = "Day",
+    date: Optional[date] = None,
+    database: Session = Depends(db.get_db)
+):
+    if mode not in ["Day", "Month", "Year"]:
+        raise HTTPException(status_code=400, detail="Invalid mode. Must be Day, Month, or Year")
+
+    try:
+        result = crud.get_aggregated_metrics_by_vehicle(
+            database,
+            vehicle,
+            mode=mode,
+            date=date.isoformat() if date else None
+        )
+        return result
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=str(e))
 
 @app.post("/upload-csv")
 def upload_csv(file: UploadFile, database: Session = Depends(db.get_db)):
