@@ -3,10 +3,10 @@ Web-OBD or OBD Dataview ระบบที่พัฒนาเพื่อ แ�
 ออกแบบมาเพื่อตรวจสอบข้อมูลจาก On-Board Diagnostics (OBD) ของรถ เช่น รอบเครื่อง, ความเร็ว, อุณหภูมิ, รหัสปัญหา ฯลฯ ผ่านหน้าเว็บแบบ real-time หรือเก็บบันทึกข้อมูลได้
 
 # Key features
-📡 ดึงข้อมูลจากระบบ OBD ของรถยนต์
-🌐 แสดงผล OBD ผ่านเว็บเบราว์เซอร์
-🧠 รองรับการขยายระบบให้แสดงกราฟ หรือการวิเคราะห์ข้อมูลในอนาคต
-🏗️ แบ่งโครงสร้าง backend และ frontend อย่างชัดเจน
+- ดึงข้อมูลจากระบบ OBD ของรถยนต์
+- แสดงผล OBD ผ่านเว็บเบราว์เซอร์
+- รองรับการขยายระบบให้แสดงกราฟ หรือการวิเคราะห์ข้อมูลในอนาคต
+- แบ่งโครงสร้าง backend และ frontend อย่างชัดเจน
 
 # Tool
 - Python (สำหรับ backend API)
@@ -21,10 +21,10 @@ Web-OBD or OBD Dataview is a system developed to display data from a vehicle's O
 Designed to monitor data from a vehicle's On-Board Diagnostics (OBD), such as engine RPM, speed, temperature, trouble codes, etc., in real-time via a web interface, or to store recorded data.
 
 # Key Features
-📡 Retrieves data from the vehicle's OBD system.
-🌐 Displays OBD results via a web browser.
-🧠 Supports future system expansion to display graphs or data analysis.
-🏗️ Clearly defined backend and frontend structures.
+- Retrieves data from the vehicle's OBD system.
+- Displays OBD results via a web browser.
+- Supports future system expansion to display graphs or data analysis.
+- Clearly defined backend and frontend structures.
 
 # Tools
 - Python (for backend API)
