@@ -32,3 +32,5 @@ Designed to monitor data from a vehicle's On-Board Diagnostics (OBD), such as en
 - HTML / CSS for UI
 - Flask / FastAPI / Node
 - Docker & docker-compose for deployment
+<img width="857" height="713" alt="image" src="https://github.com/user-attachments/assets/e677d744-ad74-41c9-a664-b3a2a2baa1c3" />
+<img width="1919" height="822" alt="image" src="https://github.com/user-attachments/assets/6edd3ab3-5f7c-499e-a913-8cd90c21dbec" />
